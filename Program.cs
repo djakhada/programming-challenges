@@ -19,7 +19,7 @@ namespace challenges
             Console.WriteLine("Content:");
             Console.ResetColor();
             Console.WriteLine("00: Identitity generator");
-            Console.WriteLine("02: Temperature Converter");
+            Console.WriteLine("02: Temperature Converter :INCOMPLETE");
             Console.WriteLine("03: Fizzbuzz");
             string key = Console.ReadLine();
             switch (key)
