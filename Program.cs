@@ -200,6 +200,10 @@ namespace challenges
             {
                 outputn = inputn + 273.15F;
             }
+            else
+            {
+                outputn = inputn;
+            }
 
             return "Input: " + originalinput + " " + input +  " in " + outf + "\n" + "Output: " + outputn + " " + outf;
 
