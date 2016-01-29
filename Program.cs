@@ -164,11 +164,12 @@ namespace challenges
 
         static string ConvertTemp(string input)
         {
-            float outputn;
+            float outputn = 0.111F;
             string searched = "in";
             string outf = input.Substring(input.IndexOf(searched)+searched.Length); //output format e.g: Fahrenheit or F
             input = input.Remove(input.IndexOf(searched)-1);
             float inputn = float.Parse(Regex.Match(input, @"(-)?\d+").Value); //input number e.g: 123
+            float originalinput = inputn;
             input = input.Replace(inputn.ToString(), ""); //input is the input format now e.g: C or Celsius
             
             if (outf.ToUpper().Contains('F')) outf = "Fahrenheit";
@@ -200,7 +201,7 @@ namespace challenges
                 outputn = inputn + 273.15F;
             }
 
-            return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: " + outputn + " " + outf;
+            return "Input: " + originalinput + " " + input +  " in " + outf + "\n" + "Output: " + outputn + " " + outf;
 
         }
 
