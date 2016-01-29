@@ -182,7 +182,6 @@ namespace challenges
             else return "Wrong Input.";
 
             //First we convert the given temperature to Celsius
-            //This can't handle negative numbers, wtf
             if (input == "Fahrenheit")
             {
                 inputn = (5.0F / 9.0F) * (inputn - 32);
@@ -202,6 +201,7 @@ namespace challenges
             }
 
             return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: " + outputn + " " + outf;
+
         }
 
 
