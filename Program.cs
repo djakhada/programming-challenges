@@ -169,7 +169,6 @@ namespace challenges
             string outf = input.Substring(input.IndexOf(searched)+searched.Length); //output format e.g: Fahrenheit or F
             input = input.Remove(input.IndexOf(searched)-1);
             float inputn = float.Parse(Regex.Match(input, @"(-)?\d+").Value); //input number e.g: 123
-            return inputn.ToString();
             input = input.Replace(inputn.ToString(), ""); //input is the input format now e.g: C or Celsius
             if (outf.ToUpper().Contains('F')) outf = "Fahrenheit";
             else if (outf.ToUpper().Contains('C')) outf = "Celsius";
@@ -192,7 +191,7 @@ namespace challenges
                 inputn = inputn - 273.15F;
             }
 
-            
+            return inputn.ToString();
             //return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: ";
         }
 
