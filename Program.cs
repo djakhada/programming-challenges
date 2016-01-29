@@ -184,13 +184,14 @@ namespace challenges
             //This can't handle negative numbers, wtf
             if (input == "Fahrenheit")
             {
-                inputn = (5.0F / 9.0F) * (inputn - 32);
+                inputn = (5.0F / 9.0F) * (inputn - 32F);
             }
             else if (input == "Kelvin")
             {
                 inputn = inputn - 273.15F;
             }
 
+            return inputn.ToString();
             return inputn.ToString();
             //return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: ";
         }
@@ -223,8 +224,6 @@ namespace challenges
             }
             Console.WriteLine("");
             Main(null);
-            Console.ResetColor();
         }
-
     }
 }
