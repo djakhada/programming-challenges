@@ -168,7 +168,7 @@ namespace challenges
             string searched = "in";
             string outf = input.Substring(input.IndexOf(searched)+searched.Length); //output format e.g: Fahrenheit or F
             input = input.Remove(input.IndexOf(searched)-1);
-            double inputn = Int32.Parse(Regex.Match(input, @"\d+").Value); //input number e.g: 123
+            float inputn = Int32.Parse(Regex.Match(input, @"\d+").Value); //input number e.g: 123
             input = input.Replace(inputn.ToString(), ""); //input is the input format now e.g: C or Celsius
             if (outf.ToUpper().Contains('F')) outf = "Fahrenheit";
             else if (outf.ToUpper().Contains('C')) outf = "Celsius";
@@ -184,11 +184,11 @@ namespace challenges
             //This can't handle negative numbers, wtf
             if (input == "Fahrenheit")
             {
-                inputn = (5.0 / 9.0) * (inputn - 32);
+                inputn = (5.0F / 9.0F) * (inputn - 32);
             }
             else if (input == "Kelvin")
             {
-                inputn = inputn - 273.15;
+                inputn = inputn - 273.15F;
             }
 
             return inputn.ToString();
