@@ -170,6 +170,7 @@ namespace challenges
             input = input.Remove(input.IndexOf(searched)-1);
             float inputn = float.Parse(Regex.Match(input, @"(-)?\d+").Value); //input number e.g: 123
             input = input.Replace(inputn.ToString(), ""); //input is the input format now e.g: C or Celsius
+            
             if (outf.ToUpper().Contains('F')) outf = "Fahrenheit";
             else if (outf.ToUpper().Contains('C')) outf = "Celsius";
             else if (outf.ToUpper().Contains('K')) outf = "Kelvin";
@@ -223,7 +224,6 @@ namespace challenges
             }
             Console.WriteLine("");
             Main(null);
-            Console.ResetColor();
         }
 
     }
