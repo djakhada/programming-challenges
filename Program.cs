@@ -164,7 +164,7 @@ namespace challenges
 
         static string ConvertTemp(string input)
         {
-            int outputn;
+            float outputn;
             string searched = "in";
             string outf = input.Substring(input.IndexOf(searched)+searched.Length); //output format e.g: Fahrenheit or F
             input = input.Remove(input.IndexOf(searched)-1);
@@ -192,8 +192,16 @@ namespace challenges
                 inputn = inputn - 273.15F;
             }
 
-            return inputn.ToString();
-            //return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: ";
+            if (outf == "Fahrenheit")
+            {
+                outputn = (inputn * (9.0F / 5.0F)) + 32;
+            }
+            else if (outf == "Kelvin")
+            {
+                outputn = inputn + 273.15F;
+            }
+
+            return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: " + outputn + " " + outf;
         }
 
 
@@ -225,6 +233,5 @@ namespace challenges
             Console.WriteLine("");
             Main(null);
         }
-
     }
 }
