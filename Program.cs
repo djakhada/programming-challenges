@@ -9,32 +9,40 @@ namespace challenges
 {
     class Program
     {
-        
-
         static void Main(string[] args)
         {
-            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Programming Challenges v1.3 programmed by github.com/sinnzr");
             Console.WriteLine("Content:");
             Console.ResetColor();
             Console.WriteLine("00: Identitity generator");
-            Console.WriteLine("02: Temperature Converter :INCOMPLETE");
-            Console.WriteLine("03: Fizzbuzz");
+            Console.WriteLine("01: Temperature Converter :INCOMPLETE");
+            Console.WriteLine("02: Fizzbuzz");
             string key = Console.ReadLine();
             switch (key)
             {
+                case "0":
                 case "00":
                     GenerateIdentity();
                     break;
-                case "02":
-                    ConvertTemp();
+                case "1":
+                case "01":
+                    Console.WriteLine("");
+                    Console.WriteLine("Format: 100C in Fahrenheit");
+                    string input = Console.ReadLine();
+                    Console.WriteLine(ConvertTemp(input));
+                    Console.WriteLine("");
+                    Main(null);
                     break;
-                case "03":
+                case "2":
+                case "02":
                     Fizzbuzz();
                     break;
-                    
+                default:
+                    Main(null);
+                    break;      
             }
+            Console.WriteLine("");
         }
 
 
@@ -79,11 +87,11 @@ namespace challenges
                 Console.Clear();
                 Console.Write("Specify gender?[Y/n]: ");
                 string input = Console.ReadLine();
-                if (Regex.IsMatch(input, "y", RegexOptions.IgnoreCase))
+                if (input.ToUpper().Equals("Y"))
                 {
                     Console.Write("What gender?[f/m]: ");
                     input = Console.ReadLine();
-                    if (Regex.IsMatch(input, "f", RegexOptions.IgnoreCase))
+                    if (input.ToUpper().Equals("F"))
                     {
                         GenerateIdentity("female");
                     }
@@ -96,28 +104,26 @@ namespace challenges
             }
             else if (type == "male") //male
             {
-                Console.Clear();
                 int r = new Random().Next(namesMale.Count);
                 int rs = new Random().Next(surnames.Count);
                 Console.WriteLine("Surname: " + surnames[rs]);
                 Console.WriteLine("Name: " + namesMale[r]);
                 Console.WriteLine("Age: " + new Random().Next(1,100));
-                Console.Write("Generate another?[Y/N]: ");
+                Console.Write("Generate another?[Y/n]: ");
                 string input = Console.ReadLine();
-                if (Regex.IsMatch(input, "y", RegexOptions.IgnoreCase)) GenerateIdentity("male");
+                if (input.ToUpper().Equals("Y")) GenerateIdentity("male");
                 else Main(null);
             }
             else if (type == "female") //female
             {
-                Console.Clear();
                 int r = new Random().Next(namesFemale.Count);
                 int rs = new Random().Next(surnames.Count);
                 Console.WriteLine("Surname: " + surnames[rs]);
                 Console.WriteLine("Name: " + namesFemale[r]);
                 Console.WriteLine("Age: " + new Random().Next(1, 100));
-                Console.Write("Generate another?[Y/N]: ");
+                Console.Write("Generate another?[Y/n]: ");
                 string input = Console.ReadLine();
-                if (Regex.IsMatch(input, "y", RegexOptions.IgnoreCase)) GenerateIdentity("female");
+                if (input.ToUpper().Equals("Y")) GenerateIdentity("female");
                 else Main(null);
             }
             else //no gender specified
@@ -140,9 +146,9 @@ namespace challenges
                 Console.WriteLine("Surname: " + surnames[rs]);
                 Console.WriteLine("Name: " + name);
                 Console.WriteLine("Age: " + new Random().Next(1, 100));
-                Console.Write("Generate another?[Y/N]: ");
+                Console.Write("Generate another?[Y/n]: ");
                 string input = Console.ReadLine();
-                if (Regex.IsMatch(input, "y", RegexOptions.IgnoreCase)) GenerateIdentity("auto");
+                if (input.ToUpper().Equals("Y")) GenerateIdentity("auto");
                 else Main(null);
             }
             
@@ -156,9 +162,37 @@ namespace challenges
         // C O N V E R T T E M P
 
 
-        static void ConvertTemp(int temperature = 0, string unit = "celsius")
+        static string ConvertTemp(string input)
         {
+            int outputn;
+            string searched = "in";
+            string outf = input.Substring(input.IndexOf(searched)+searched.Length); //output format e.g: Fahrenheit or F
+            input = input.Remove(input.IndexOf(searched)-1);
+            double inputn = Int32.Parse(Regex.Match(input, @"\d+").Value); //input number e.g: 123
+            input = input.Replace(inputn.ToString(), ""); //input is the input format now e.g: C or Celsius
+            if (outf.ToUpper().Contains('F')) outf = "Fahrenheit";
+            else if (outf.ToUpper().Contains('C')) outf = "Celsius";
+            else if (outf.ToUpper().Contains('K')) outf = "Kelvin";
+            else return "Wrong Input.";
 
+            if (input.ToUpper().Contains('F')) input = "Fahrenheit";
+            else if (input.ToUpper().Contains('C')) input = "Celsius";
+            else if (input.ToUpper().Contains('K')) input = "Kelvin";
+            else return "Wrong Input.";
+
+            //First we convert the given temperature to Celsius
+            //This can't handle negative numbers, wtf
+            if (input == "Fahrenheit")
+            {
+                inputn = (5.0 / 9.0) * (inputn - 32);
+            }
+            else if (input == "Kelvin")
+            {
+                inputn = inputn - 273.15;
+            }
+
+            return inputn.ToString();
+            //return "Input: " + inputn + " " + input + " in " + outf + "\n" + "Output: ";
         }
 
 
@@ -172,22 +206,23 @@ namespace challenges
                 if (i % 3 == 0 && i % 5 == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("Ne");
+                    Console.WriteLine("Pop");
                 }
                 else if (i % 5 == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("De");
+                    Console.WriteLine("Buzz");
                 }
                 else if (i % 3 == 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("Su");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Fizz");
                 }
                 else Console.WriteLine(i);
                 Console.ResetColor();
             }
-            Console.ReadLine();
+            Console.WriteLine("");
+            Main(null);
             Console.ResetColor();
         }
 
