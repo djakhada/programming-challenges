@@ -48,7 +48,7 @@ namespace challenges
 
 
         static List<String> surnames = new List<String>(){
-            "Corlett","Smith","Howell","Brown","Black","White","Gruber",
+            "Cornetto","Smith","Howell","Brown","Black","White","Gruber",
             "Mayer","Moser","Weber","Schmid","Rəsulov","Hüseynov","Козлов",
             "Jensen","Nielsen","Hansen","Virtanen","Järvinen","Niemi","Salo",
             "Laitinen","Tuominen","Koskinen","Mattila","Dubois","Bernard","Moreau",
